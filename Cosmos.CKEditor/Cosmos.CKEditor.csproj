@@ -14,4 +14,8 @@
     <ContainerPort Include="8081" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\lib\ckeditor\" />
+  </ItemGroup>
+
 </Project>
