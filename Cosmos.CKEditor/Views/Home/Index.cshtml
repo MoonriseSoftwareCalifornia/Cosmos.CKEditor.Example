@@ -1,0 +1,45 @@
+﻿@using Microsoft.AspNetCore.Components
+@{
+    ViewData["Title"] = "Home Page";
+    var data = new ImportMapDefinition(
+        new Dictionary<string, string>
+        {
+            { "ckeditor5", "/lib/ckeditor5/ckeditor.js" },
+            { "ckeditor5/", "/lib/ckeditor5/" },
+        }, null, null);
+}
+<div class="main-container">
+    <div id="editor">
+        <p>Hello from CKEditor 5!</p>
+    </div>
+</div>
+<script type="importmap" asp-importmap="@data">
+</script>
+<script type="module">
+    const LICENSE_KEY = 'GPL';
+
+    import {
+        ClassicEditor,
+        Essentials,
+        Paragraph,
+        Bold,
+        Italic,
+        Font
+    } from 'ckeditor5';
+
+     ClassicEditor
+        .create( document.querySelector( '#editor' ), {
+            licenseKey: LICENSE_KEY, // Or 'GPL'.
+            plugins: [ Essentials, Paragraph, Bold, Italic, Font ],
+            toolbar: [
+                'undo', 'redo', '|', 'bold', 'italic', '|',
+                'fontSize', 'fontFamily', 'fontColor', 'fontBackgroundColor'
+            ]
+        } )
+        .then( editor => {
+            window.editor = editor;
+        } )
+        .catch( error => {
+            console.error( error );
+        } );
+</script>
